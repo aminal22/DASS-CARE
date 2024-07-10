@@ -75,7 +75,12 @@ The ledgers in this layer store information related to different transactions pr
    ```
 ##Result
 
-![Capture d'écran 2024-07-10 120253](https://github.com/aminal22/DASS-CARE/assets/114859285/272e667d-60c7-4613-8513-32bd6e701904)
+<p align="center">
+  <img src="https://github.com/aminal22/DASS-CARE/assets/114859285/272e667d-60c7-4613-8513-32bd6e701904" alt="Capture d'écran 2024-07-10 120253" width="800">
+  <br>
+  <img src="https://github.com/aminal22/DASS-CARE/assets/114859285/5bddad6c-ce53-44ec-8de9-d7d347195985" alt="Capture d'écran 2024-07-10 120239" width="300">
+</p>
+
 
 ## License
 
