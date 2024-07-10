@@ -80,7 +80,7 @@ The ledgers in this layer store information related to different transactions pr
    ```sh
    npm start
    ```
-##Result
+## Result
 
 <p align="center">
   <img src="https://github.com/aminal22/DASS-CARE/assets/114859285/272e667d-60c7-4613-8513-32bd6e701904" alt="Capture d'écran 2024-07-10 120253" width="800">
