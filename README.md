@@ -25,6 +25,13 @@ The ledgers in this layer store information related to different transactions pr
 
 ## Ecosystem Workflow
 
+
+<p align="center">
+  <img src="https://github.com/aminal22/DASS-CARE/assets/114859285/e46399cc-7cf6-49c0-b693-f3f6a54865a3" alt="Capture d'écran 2024-07-10 131440" width="400">
+  </p>
+
+
+
 1. **Registration:** Medical sensors and healthcare stakeholders are registered in the ecosystem via a distributed front-end DApp. The registered information is stored in the distributed ledger via a registration smart contract.
 2. **Data Analysis:** Medical sensors provide real-time data such as body temperature, oxygen levels, glucose levels, etc. These data are analyzed by AI edge servers using machine learning (RandomForest) and deep learning (CNN) algorithms.
 3. **Anomaly Detection:** In case of anomaly detection, the server triggers smart contracts on the blockchain, such as COVID-19 detection, and alerts the corresponding doctor. The server also periodically sends event triggers to save patient monitoring data in the blockchain.
