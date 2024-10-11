@@ -12,51 +12,35 @@ import {
 } from "./Store/Interactions";
 import config from "./config.json";
 import { Alert } from "./Components";
-
 function App() {
   const dispatch = useDispatch();
-
   const loadBlockchainData = async () => {
-    try {
-      const provider = loadProvider(dispatch);
-      const chainId = await loadNetwork(provider, dispatch);
-      console.log("Current Chain ID:", chainId); // Check the logged chain ID
-  
-      // Check if MedicalStorage address exists for the chainId
-      const medicalStorageAddress = config[chainId]?.MedicalStorage?.address;
-  
-      if (!medicalStorageAddress) {
-        console.error("MedicalStorage address not found for chainId:", chainId);
-        return;
-      }
-  
-      // Load the MedicalStorage contract
-      const medicalStorage = await loadMedicalStorage(provider, medicalStorageAddress, dispatch);
-  
-      if (!medicalStorage) {
-        console.error("MedicalStorage contract not loaded");
-        return;
-      }
-  
-      // Subscribe to events
-      subscribeToEvents(medicalStorage, dispatch);
-    } catch (error) {
-      console.error("Error loading blockchain data:", error);
-    }
-  };
-  
+    const provider = loadProvider(dispatch);
+    const chainId = await loadNetwork(provider, dispatch);
+    window.ethereum.on("accountChanged", () => {
+      loadAccount(provider, dispatch);
+    });
+    window.ethereum.on("chainChanged", () => {
+      window.location.reload();
+    });
 
+    const contractAddress = "0xc9724dE684F7456D5318E029A1A80cC6823D7702";
+    const medicalStorage = loadMedicalStorage(
+      provider,
+      contractAddress,
+      dispatch
+    );
+    subscribeToEvents(medicalStorage, dispatch);
+  };
   useEffect(() => {
     loadBlockchainData();
-  }, []); // Add an empty dependency array to run once on mount
-
+  });
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Shell />} />
-        <Route path="/Patient" element={<Patient />} />
-        <Route path="/Doctor" element={<Doctor />} />
-        <Route path="/Register" element={<Register />} /> {/* Added Register route */}
+        <Route path="/" element={<Shell />}></Route>
+        <Route path="/Patient" element={<Patient />}></Route>
+        <Route path="/Doctor" element={<Doctor />}></Route>
       </Routes>
       <Alert />
     </div>

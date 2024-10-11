@@ -1,4 +1,3 @@
-// Reducer for managing provider and account
 export const Provider = (state = {}, action) => {
   switch (action.type) {
     case "PROVIDER_LOADED":
@@ -20,21 +19,18 @@ export const Provider = (state = {}, action) => {
       return state;
   }
 };
-
-// Default state for MedicalStorage
 const DEFAULT_MEDICALSTORAGE_STATE = {
   loaded: false,
   contract: {},
   transaction: {
     isSuccessful: false,
-    isPending: false,
-    isError: false,
   },
   events: [],
 };
-
-// Reducer for managing MedicalStorage contract state and transaction states
-export const MedicalStorage = (state = DEFAULT_MEDICALSTORAGE_STATE, action) => {
+export const MedicalStorage = (
+  state = DEFAULT_MEDICALSTORAGE_STATE,
+  action
+) => {
   switch (action.type) {
     case "MEDICALSTORAGE_LOADED":
       return {
@@ -48,8 +44,8 @@ export const MedicalStorage = (state = DEFAULT_MEDICALSTORAGE_STATE, action) => 
         transaction: {
           isSuccessful: false,
           isPending: true,
-          isError: false,
         },
+        transferInProgress: false,
       };
     case "ADD_DOCTOR_SUCCESS":
       return {
@@ -57,8 +53,8 @@ export const MedicalStorage = (state = DEFAULT_MEDICALSTORAGE_STATE, action) => 
         transaction: {
           isSuccessful: true,
           isPending: false,
-          isError: false,
         },
+        transferInProgress: true,
         events: [action.event, ...state.events],
       };
     case "ADD_DOCTOR_FAIL":
@@ -69,9 +65,67 @@ export const MedicalStorage = (state = DEFAULT_MEDICALSTORAGE_STATE, action) => 
           isPending: false,
           isError: true,
         },
+        transferInProgress: false,
       };
 
-    // Additional cases can be added here for other transaction types
+    case "REVOKE_DOCTOR_INITIALIZED":
+      return {
+        ...state,
+        transaction: {
+          isSuccessful: false,
+          isPending: true,
+        },
+        transferInProgress: false,
+      };
+    case "REVOKE_DOCTOR_SUCCESS":
+      return {
+        ...state,
+        transaction: {
+          isSuccessful: true,
+          isPending: false,
+        },
+        transferInProgress: true,
+        events: [action.event, ...state.events],
+      };
+    case "REVOKE_DOCTOR_FAIL":
+      return {
+        ...state,
+        transaction: {
+          isSuccessful: false,
+          isPending: false,
+          isError: true,
+        },
+        transferInProgress: false,
+      };
+    case "PROVIDE_DIAGNOSIS_INITIALIZED":
+      return {
+        ...state,
+        transaction: {
+          isSuccessful: false,
+          isPending: true,
+        },
+        transferInProgress: false,
+      };
+    case "PROVIDE_DIAGNOSIS_SUCCESS":
+      return {
+        ...state,
+        transaction: {
+          isSuccessful: true,
+          isPending: false,
+        },
+        transferInProgress: true,
+        events: [action.event, ...state.events],
+      };
+    case "PROVIDE_DIAGNOSIS_FAIL":
+      return {
+        ...state,
+        transaction: {
+          isSuccessful: false,
+          isPending: false,
+          isError: true,
+        },
+        transferInProgress: false,
+      };
 
     default:
       return state;

@@ -1,24 +1,27 @@
 import React, { useState } from "react";
 import "./register.css";
-import { Link, useNavigate } from "react-router-dom";
-import { loadAccount, registerDoctor, registerUser } from "../../Store/Interactions";
+import { useNavigate } from "react-router-dom";
+import { loadAccount, registerUser } from "../../Store/Interactions";
 import { useDispatch, useSelector } from "react-redux";
 
 const Register = () => {
   const provider = useSelector((state) => state.Provider.connection);
   const medicalStorage = useSelector((state) => state.MedicalStorage.contract);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); 
   const [registerType, setRegisterType] = useState("patient");
   const navigate = useNavigate();
+
   const [name, setName] = useState("");
-  const [phoneNum, setPhoneNum] = useState("");
-  const [age, setAge] = useState("");
+  const [phone, setPhone] = useState("");
   const [gender, setGender] = useState("");
+
+  const [age, setAge] = useState(0);
   const [height, setHeight] = useState("");
   const [weight, setWeight] = useState("");
   const [bloodType, setBloodType] = useState("");
   const [allergies, setAllergies] = useState("");
   const [problem, setProblem] = useState("");
+
   const [qualification, setQualification] = useState("");
   const [major, setMajor] = useState("");
   const [details, setDetails] = useState("");
@@ -27,13 +30,14 @@ const Register = () => {
     setRegisterType(e.target.value);
   };
 
-  const submitHandler = async (e) => {
+  /*const submitHandler = async (e) => {
     e.preventDefault();
-    await loadAccount(provider, dispatch);
+    loadAccount(provider, dispatch); 
+
     if (registerType === "patient") {
       await registerUser(
         name,
-        phoneNum,
+        phone,
         age,
         gender,
         height,
@@ -41,29 +45,65 @@ const Register = () => {
         bloodType,
         allergies,
         problem,
-        provider,
-        medicalStorage,
-        dispatch
+        dispatch 
       );
-      navigate("/Patient");
+      navigate("/Patient", {
+        state: {},
+      });
     } else {
-      await registerDoctor(
+      await registerUser(
         name,
-        phoneNum,
+        phone,
         gender,
         qualification,
         major,
         details,
-        provider,
-        medicalStorage,
-        dispatch
+        dispatch 
       );
-      navigate("/Doctor");
+      navigate("/Doctor", {
+        state: {},
+      });
     }
+*/
+const submitHandler = async (e) => {
+  e.preventDefault();
+  await loadAccount(provider, dispatch); // Assure-toi que l'utilisateur est connecté à son compte
+
+  if (registerType === "patient") {
+    await registerUser(
+      name,
+      phone,
+      age, // age pour un patient
+      gender,
+      height, // taille pour un patient
+      weight, // poids pour un patient
+      medicalStorage,
+      provider,
+      dispatch, // dispatch est passé ici
+      "patient" // Type d'enregistrement
+    );
+    navigate("/Patient");
+  } else {
+    await registerUser(
+      name,
+      phone,
+      qualification, // qualification pour un docteur
+      gender,
+      major, // spécialité
+      details, // détails pour un docteur
+      medicalStorage,
+      provider,
+      dispatch, // dispatch est passé ici
+      "doctor" // Type d'enregistrement
+    );
+    navigate("/Doctor");
+  }
+
+    // Reset all fields
     setName("");
-    setPhoneNum("");
-    setAge("");
+    setPhone("");
     setGender("");
+    setAge(0);
     setHeight("");
     setWeight("");
     setBloodType("");
@@ -76,77 +116,85 @@ const Register = () => {
 
   return (
     <div className="container">
-      <h2>Sign up</h2>
+      <h2>Register</h2>
       <form onSubmit={submitHandler}>
         <div className="form-group">
-          <label>Sign up as :</label>
-          <select name="registerAs" onChange={registerHandler} value={registerType}>
-          <option value="0" disabled>
+          <label>Register as:</label>
+          <select
+            name="registerAs"
+            onChange={registerHandler}
+            value={registerType}
+          >
+            <option value="0" disabled>
               Select type of registration
             </option>
-            <option value="patient">Patient</option>
             <option value="doctor">Doctor</option>
+            <option value="patient">Patient</option>
           </select>
         </div>
+
+        {/* Common fields */}
         <div className="form-group">
           <label>Name:</label>
           <input
             type="text"
-            placeholder="Your Name"
+            placeholder="Name"
             onChange={(e) => setName(e.target.value)}
-            value={name}
+            value={name || ""}
             required
           />
         </div>
         <div className="form-group">
-          <label>Phone Number:</label>
+          <label>Phone:</label>
           <input
-            type="number"
-            placeholder="Your Phone Number"
-            onChange={(e) => setPhoneNum(e.target.value)}
-            value={phoneNum}
+            type="text"
+            placeholder="123-456-7890"
+            onChange={(e) => setPhone(e.target.value)}
+            value={phone || ""}
             required
           />
         </div>
-        {registerType === "patient" ? (
-          <div>
+        <div className="form-group">
+          <label>Gender:</label>
+          <input
+            type="text"
+            placeholder="Male/Female"
+            onChange={(e) => setGender(e.target.value)}
+            value={gender || ""}
+            required
+          />
+        </div>
+
+        
+        {registerType === "patient" && (
+          <>
             <div className="form-group">
               <label>Age:</label>
               <input
                 type="number"
-                placeholder="Your Age"
+                placeholder="34"
                 onChange={(e) => setAge(e.target.value)}
-                value={age}
+                value={age || ""}
                 required
               />
             </div>
             <div className="form-group">
-              <label>Gender:</label>
-              <select name="gender" onChange={(e) => setGender(e.target.value)} value={gender}>
-              <option value="0" disabled>
-                 Select your gender
-            </option>
-                <option value="Female">Female</option>
-                <option value="Male">Male</option>
-              </select>
-            </div>
-            <div className="form-group">
               <label>Height:</label>
               <input
-                type="text"
-                placeholder="Your Height"
+                type="number"
+                placeholder="165"
                 onChange={(e) => setHeight(e.target.value)}
-                value={height}
+                value={height || ""}
                 required
               />
             </div>
             <div className="form-group">
               <label>Weight:</label>
               <input
-                type="text"
-                placeholder="Your Weight"
+                type="number"
+                placeholder="50"
                 onChange={(e) => setWeight(e.target.value)}
-                value={weight}
+                value={weight || ""}
                 required
               />
             </div>
@@ -154,9 +202,9 @@ const Register = () => {
               <label>Blood Type:</label>
               <input
                 type="text"
-                placeholder="Your Blood Type"
+                placeholder="A"
                 onChange={(e) => setBloodType(e.target.value)}
-                value={bloodType}
+                value={bloodType || ""}
                 required
               />
             </div>
@@ -164,9 +212,9 @@ const Register = () => {
               <label>Allergies:</label>
               <input
                 type="text"
-                placeholder="Your Allergies"
+                placeholder="Diabetes"
                 onChange={(e) => setAllergies(e.target.value)}
-                value={allergies}
+                value={allergies || ""}
                 required
               />
             </div>
@@ -174,32 +222,34 @@ const Register = () => {
               <label>Problem:</label>
               <input
                 type="text"
-                placeholder="Your Problem"
+                placeholder="Diabetes"
                 onChange={(e) => setProblem(e.target.value)}
-                value={problem}
+                value={problem || ""}
                 required
               />
             </div>
-          </div>
-        ) : (
-          <div>
+          </>
+        )}
+
+        {registerType === "doctor" && (
+          <>
             <div className="form-group">
               <label>Qualification:</label>
               <input
                 type="text"
-                placeholder="Your Qualification"
+                placeholder="MD"
                 onChange={(e) => setQualification(e.target.value)}
-                value={qualification}
+                value={qualification || ""}
                 required
               />
             </div>
             <div className="form-group">
-              <label>Major:</label>
+              <label>Specialization (Major):</label>
               <input
                 type="text"
-                placeholder="Your Major"
+                placeholder="Cardiology"
                 onChange={(e) => setMajor(e.target.value)}
-                value={major}
+                value={major || ""}
                 required
               />
             </div>
@@ -207,16 +257,17 @@ const Register = () => {
               <label>Details:</label>
               <input
                 type="text"
-                placeholder="Details about yourself"
+                placeholder="Experience, years in practice, etc."
                 onChange={(e) => setDetails(e.target.value)}
-                value={details}
+                value={details || ""}
                 required
               />
             </div>
-          </div>
+          </>
         )}
+
         <div className="form-group">
-          <button type="submit">Sign up</button>
+          <button type="submit">Register</button>
         </div>
       </form>
     </div>

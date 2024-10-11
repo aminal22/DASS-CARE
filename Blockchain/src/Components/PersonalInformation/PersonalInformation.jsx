@@ -10,68 +10,103 @@ const PersonalInformation = () => {
   const transferInProgress = useSelector(
     (state) => state.MedicalStorage.transferInProgress
   );
+
   const [details, setDetails] = useState(null);
-  const [doctorList, setDoctorList] = useState(null);
+  const [doctorList, setDoctorList] = useState([]);
   const [showDiagnosis, setShowDiagnosis] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
+    console.log("Account:", account); // Log account
+    console.log("Medical Storage Contract:", medicalStorage); // Log contract
+
     const fetchDetails = async () => {
-      const details = await getPatientDetails(medicalStorage, account);
-      const doctorList = await getDoctorList(medicalStorage, account);
-      setDoctorList(doctorList);
-      setDetails(details);
+      setLoading(true);
+      setError(null); // Reset error state before fetching
+      try {
+        if (!medicalStorage || !account) {
+          setError("Medical storage contract or account is not defined.");
+          return;
+        }
+        
+        console.log("Fetching patient details..."); // Debugging line
+        const fetchedDetails = await getPatientDetails(medicalStorage, account);
+        console.log("Fetched Patient Details:", fetchedDetails); // Debugging line
+        
+        if (!fetchedDetails) {
+          setError("Failed to fetch patient details.");
+          return;
+        }
+        
+        console.log("Fetching doctor list..."); // Debugging line
+        const fetchedDoctorList = await getDoctorList(medicalStorage, account);
+        console.log("Fetched Doctor List:", fetchedDoctorList); // Debugging line
+        
+        setDoctorList(fetchedDoctorList);
+        setDetails(fetchedDetails);
+      } catch (err) {
+        console.error("Error fetching details:", err);
+        setError("Failed to fetch details.");
+      } finally {
+        setLoading(false);
+      }
     };
-    
-    if (medicalStorage && account) {
-      fetchDetails();
-    }
+
+    fetchDetails();
   }, [medicalStorage, account, transferInProgress]);
+
+  const {
+    name,
+    phone,
+    age,
+    gender,
+    height,
+    weight,
+    bloodType,
+    allergies,
+    problem,
+  } = details || {};
 
   return (
     <div className="personalInformation">
       <h2>Personal Information</h2>
-      <p>
-        <strong>Name:</strong> {details && details.name}
-      </p>
-      <p>
-        <strong>Phone:</strong> {details && details.phone}
-      </p>
-      <p>
-        <strong>Age:</strong> {details && details.age}
-      </p>
-      
-      <p>
-        <strong>Gender:</strong> {details && details.gender}
-      </p>
-      <p>
-        <strong>Height:</strong> {details && details.height}
-      </p>
-      <p>
-        <strong>Weight:</strong> {details && details.weight}
-      </p>
-      <p>
-        <strong>BloodType:</strong> {details && details.bloodType}
-      </p>
-      <p>
-        <strong>Allergies:</strong> {details && details.allergies}
-      </p>
-      <p>
-        <strong>Problem:</strong> {details && details.problem}
-      </p>
-      <button
-        className="btn"
-        style={showDiagnosis ? { backgroundColor: "red" } : null}
-        onClick={() => setShowDiagnosis(!showDiagnosis)}
-      >
-        {showDiagnosis ? "Hide Diagnosis" : "Show Diagnosis"}
-      </button>
-      {showDiagnosis && (
-        <div>
-          {doctorList &&
-            doctorList.map((doctor, index) => (
-              <ShowDiagnosis doctor={doctor} key={index} />
-            ))}
-        </div>
+      {loading ? (
+        <p>Loading...</p>
+      ) : error ? (
+        <p className="error">{error}</p>
+      ) : details ? (
+        <>
+          <p><strong>Name:</strong> {name}</p>
+          <p><strong>Phone:</strong> {phone}</p>
+          <p><strong>Age:</strong> {age}</p>
+          <p><strong>Gender:</strong> {gender}</p>
+          <p><strong>Height:</strong> {height}</p>
+          <p><strong>Weight:</strong> {weight}</p>
+          <p><strong>Blood Type:</strong> {bloodType}</p>
+          <p><strong>Allergies:</strong> {allergies}</p>
+          <p><strong>Problem:</strong> {problem}</p>
+          <button
+            className="btn"
+            style={showDiagnosis ? { backgroundColor: "red" } : null}
+            onClick={() => setShowDiagnosis(!showDiagnosis)}
+          >
+            {showDiagnosis ? "Hide Diagnosis" : "Show Diagnosis"}
+          </button>
+          {showDiagnosis && (
+            <div>
+              {doctorList.length > 0 ? (
+                doctorList.map((doctor, index) => (
+                  <ShowDiagnosis doctor={doctor} key={index} />
+                ))
+              ) : (
+                <p>No doctors available.</p>
+              )}
+            </div>
+          )}
+        </>
+      ) : (
+        <p>No personal information available.</p>
       )}
     </div>
   );
