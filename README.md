@@ -71,11 +71,6 @@ The ledgers in this layer store information related to different transactions pr
    npm install
    ```
 
-3. Deploy smart contracts:
-   ```sh
-   truffle migrate --network <network_name>
-   ```
-
 4. Run the application:
    ```sh
    npm start
