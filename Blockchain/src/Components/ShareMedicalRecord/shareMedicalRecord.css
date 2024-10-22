@@ -14,7 +14,7 @@
   }
 
   .btn {
-    background-color: #4CAF50;
+    background-color: #4c6faf;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -28,7 +28,7 @@
   }
 
   .btn:hover {
-    background-color: #45a049;
+    background-color: #4c6faf;
   }
   select {
     width: 100%;

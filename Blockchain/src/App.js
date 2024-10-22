@@ -24,7 +24,7 @@ function App() {
       window.location.reload();
     });
 
-    const contractAddress = "0xc9724dE684F7456D5318E029A1A80cC6823D7702";
+    const contractAddress = "0xBbD18ad3803782182F6C7d5712f9369707C80caf";
     const medicalStorage = loadMedicalStorage(
       provider,
       contractAddress,

@@ -1,13 +1,13 @@
 {  
     "1337": {
       "MedicalStorage": {
-        "address": "0xc9724dE684F7456D5318E029A1A80cC6823D7702"
+        "address": "0xDa7585aEe56F3A86DE6b67fEe0C05CaC8090553C"
       },
       "explorerURL": "https://127.0.0.1:8545"
     },
     "31337": {
         "MedicalStorage": {
-            "address": "0x49683B86808138e5892c538CA2e179f5C9E0f503"
+            "address": "0xBbD18ad3803782182F6C7d5712f9369707C80caf"
         },
         "explorerURL": "#"
     },

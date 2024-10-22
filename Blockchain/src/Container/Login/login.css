@@ -35,7 +35,7 @@ body {
   .form-group button {
     width: 100%;
     padding: 8px;
-    background-color: #4CAF50;
+    background-color:#4c6faf;
     color: #fff;
     border: none;
     border-radius: 3px;
@@ -43,7 +43,7 @@ body {
   }
   
   .form-group button:hover {
-    background-color: #45a049;
+    background-color: #4c6faf;
   }
   
   /* Styles for select and option tags */
