@@ -1,0 +1,184 @@
+{
+  "Header": {
+    "title": "Your Health, Reimagined",
+    "paragraph": "Instant Access, Smarter Care, Complete Security—Welcome to DASS-Care 2.0"
+  },
+  "About": {
+    "paragraph": "DASS-Care 2.0 was created to transform healthcare by connecting patients, providers, and medical devices within a secure, innovative ecosystem. Our mission is to make healthcare accessible, efficient, and transparent through the latest advancements in IoMT, AI, and blockchain technology.",
+    "Why": [
+      "24/7 Access to Care",
+      "Real-Time Health Monitoring",
+      "AI-Driven Diagnostics",
+      "Secure Data Sharing"
+    ],
+    "Why2": [
+      "Seamless Record Management",
+      "Transparent Billing",
+      "COVID-19 Verification",
+      "Comprehensive Care"
+    ]
+  },
+  "Gallery": [
+    {
+      "title": "Project Title",
+      "largeImage": "img/portfolio/01-large.jpg",
+      "smallImage": "img/portfolio/01-small.jpg"
+    },
+    {
+      "title": "Project Title",
+      "largeImage": "img/portfolio/02-large.jpg",
+      "smallImage": "img/portfolio/02-small.jpg"
+    },
+    {
+      "title": "Project Title",
+      "largeImage": "img/portfolio/03-large.jpg",
+      "smallImage": "img/portfolio/03-small.jpg"
+    },
+    {
+      "title": "Project Title",
+      "largeImage": "img/portfolio/04-large.jpg",
+      "smallImage": "img/portfolio/04-small.jpg"
+    },
+    {
+      "title": "Project Title",
+      "largeImage": "img/portfolio/05-large.jpg",
+      "smallImage": "img/portfolio/05-small.jpg"
+    },
+    {
+      "title": "Project Title",
+      "largeImage": "img/portfolio/06-large.jpg",
+      "smallImage": "img/portfolio/06-small.jpg"
+    },
+    {
+      "title": "Project Title",
+      "largeImage": "img/portfolio/07-large.jpg",
+      "smallImage": "img/portfolio/07-small.jpg"
+    },
+    {
+      "title": "Project Title",
+      "largeImage": "img/portfolio/08-large.jpg",
+      "smallImage": "img/portfolio/08-small.jpg"
+    },
+    {
+      "title": "Project Title",
+      "largeImage": "img/portfolio/09-large.jpg",
+      "smallImage": "img/portfolio/09-small.jpg"
+    }
+  ],
+  "Services": [
+    {
+      "icon": "fa fa-hand-o-up",
+      "name": "Virtual Consultations",
+      "text": "Connect with specialists instantly for remote medical advice and support."
+    },
+    {
+      "icon": "fa fa-bar-chart",
+      "name": "Continuous Health Monitoring",
+      "text": "Real-time tracking of vital signs through IoMT devices for proactive care."
+    },
+    {
+      "icon": "fa fa-file-text",
+      "name": "AI-Enhanced Diagnostics",
+      "text": "Advanced machine learning algorithms analyze health data to detect anomalies."
+    },
+    {
+      "icon": "fa fa-medkit",
+      "name": "Effortless Medical Record Access",
+      "text": "Secure, centralized access to medical histories and diagnostics, anytime."
+    },
+    {
+      "icon": "fa fa-credit-card",
+      "name": "Streamlined Billing & Payments",
+      "text": "Simplified billing process with secure cryptocurrency payment options."
+    },
+    {
+      "icon": "fa fa-stethoscope",
+      "name": "COVID-19 Passport Verification",
+      "text": "Fast, reliable verification of vaccination status through smart contract technology."
+    }
+  ],
+  "Testimonials": [
+    {
+      "img": "img/testimonials/01.jpg",
+      "text": "\"DASS-Care has transformed my practice. Real-time patient data and secure record-sharing make providing care so much smoother.\"",
+      "name": "Dr. Andre R., General Practitioner"
+    },
+    {
+      "img": "img/testimonials/02.jpg",
+      "text": "\"Having access to my health records and being able to consult with specialists remotely has been a game-changer for me.\"",
+      "name": "David M., Patient"
+    },
+    {
+      "img": "img/testimonials/03.jpg",
+      "text": "\"The continuous monitoring feature gives me peace of mind, knowing my vitals are being tracked for any potential issues.\"",
+      "name": "James L., Patient"
+    },
+    {
+      "img": "img/testimonials/04.jpg",
+      "text": "\"DASS-Care’s AI diagnostics allow me to detect anomalies early on, enabling timely interventions for my patients.\"",
+      "name": "Dr. Sarah S., Cardiologist"
+    },
+    {
+      "img": "img/testimonials/05.jpg",
+      "text": "\"I love how easy it is to manage my medical data and make secure payments—all in one place!\"",
+      "name": "Dr. Carlos T., Emergency Physician"
+    },
+    {
+      "img": "img/testimonials/06.jpg",
+      "text": "\"The platform’s transparency and real-time insights are incredibly helpful for making quick, informed decisions about patient care.\"",
+      "name": "Lina K., Patient"
+    }
+  ],
+  "Team": [
+    {
+      "img": "img/team/01.jpg",
+      "name": "John Doe",
+      "job": "Director"
+    },
+    {
+      "img": "img/team/02.jpg",
+      "name": "Mike Doe",
+      "job": "Senior Designer"
+    },
+    {
+      "img": "img/team/03.jpg",
+      "name": "Jane Doe",
+      "job": "Senior Designer"
+    },
+    {
+      "img": "img/team/04.jpg",
+      "name": "Karen Doe",
+      "job": "Project Manager"
+    }
+  ],
+  "Contact": {
+    "address": "Madinat Al Irfane, Avenue Allal Al Fassi, MA 10112 ",
+    "phone": "+212 707-762670",
+    "email": "contact@dasscare.com",
+    "facebook": "fb.com",
+    "twitter": "twitter.com",
+    "youtube": "youtube.com"
+  },
+  "Features": [
+    {
+      "icon": "fa fa-comments-o",
+      "title": "Real-Time Health Monitoring",
+      "text": "Our advanced IoMT devices provide continuous health monitoring, enabling proactive and timely healthcare interventions."
+    },
+    {
+      "icon": "fa fa-bullhorn",
+      "title": "Effortless Record Management",
+      "text": "All your medical data in one secure location—seamlessly accessible to healthcare providers when you need it most."
+    },
+    {
+      "icon": "fa fa-group",
+      "title": "Instant Specialist Consultations",
+      "text": "Get immediate access to specialists for virtual consultations, ensuring you receive expert care anytime, anywhere."
+    },
+    {
+      "icon": "fa fa-magic",
+      "title": "Secure and Transparent Transactions",
+      "text": "From patient billing to secure data sharing, our blockchain technology ensures every transaction is traceable and safe."
+    }
+  ]
+}
